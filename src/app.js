@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <View>
-        <Text>Hello World!!</Text>
+        <Text style={{color: 'blue'}}>Hello World!!</Text>
       </View>
     );
   }
