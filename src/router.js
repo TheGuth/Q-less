@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Router, Scene } from 'react-native-router-flux';
 
-import LandingPage from './LandingPage';
-import Dashboard from './Dashboard';
+import LandingPage from './components/LandingPage';
+import Dashboard from './components/Dashboard';
 
 export default class App extends Component {
   render() {
