@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-export default class Dashboard extends Component {
+export class Dashboard extends Component {
+
+  componentWillMount() {
+
+  }
+
   render() {
     return (
       <View style={{margin: 128}}>
@@ -11,3 +18,12 @@ export default class Dashboard extends Component {
     )
   }
 }
+
+const mapStateToProps = (state, props) => ({
+  currentConnection: state.currentConnection,
+  businessName: state.businessName,
+  currentOrder: state.currentOrder,
+  menu: state.menu,
+})
+
+export default connect(mapStateToProps)(Dashboard);
