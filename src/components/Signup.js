@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { Spinner } from './common';
+import * as actions from '../actions/auth';
 import {Container,
   Header,
   Content,
@@ -22,10 +26,12 @@ import {Container,
   Input
  } from 'native-base';
 
-export default class Signup extends Component {
+export class Signup extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    error: false,
+    loading: false
   }
 
   grabPassword(value) {
@@ -34,6 +40,43 @@ export default class Signup extends Component {
 
   grabEmail(value) {
     this.setState({email: value});
+  }
+
+  onSignup() {
+    const {email, password} = this.state;
+    this.setState({loading: true})
+
+    this.props.dispatch(actions.signupUser(email, password))
+      .then(response => {
+        if (this.props.authenticated) {
+          return Actions.landingPage();
+        } else {
+          this.setState({error: true})
+        }
+        this.setState({loading: false})
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({error: true})
+        this.setState({loading: false})
+      })
+  }
+
+  errorMessage() {
+    if (this.state.error) {
+      return (
+        <Text>
+          Email Already Exists
+        </Text>
+      );
+    }
+    return <Text></Text>
+  }
+
+  renderSpinner() {
+    if (this.state.loading) {
+      return <Spinner size="large" />;
+    }
   }
 
   render() {
@@ -48,7 +91,6 @@ export default class Signup extends Component {
             </Button>
           </Right>
         </Header>
-
         <Container>
           <Content>
             <Form>
@@ -58,15 +100,23 @@ export default class Signup extends Component {
               </Item>
               <Item stackedLabel last>
                 <Label>Password</Label>
-                <Input onChangeText={this.grabPassword.bind(this)} />
+                <Input secureTextEntry={true} onChangeText={this.grabPassword.bind(this)} />
               </Item>
             </Form>
-            <Button block>
-              <Text>Sign Up</Text>
+            <Button onPress={this.onSignup.bind(this)} block info>
+              <Text>Sign Up! </Text>
             </Button>
+            {this.errorMessage()}
+            {this.renderSpinner()}
           </Content>
         </Container>
     </Container>
     );
   }
 }
+
+const mapStateToProps = (state, props) => ({
+  authenticated: state.authenticated,
+})
+
+export default connect(mapStateToProps)(Signup);

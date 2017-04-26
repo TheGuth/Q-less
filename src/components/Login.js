@@ -26,7 +26,7 @@ import {Container,
   Input
  } from 'native-base';
 
-export class Signup extends Component {
+export class Login extends Component {
   state = {
     email: '',
     password: '',
@@ -80,7 +80,6 @@ export class Signup extends Component {
   }
 
   render() {
-    console.log(this.state.error);
     return (
       <Container>
         <Header>
@@ -124,4 +123,4 @@ const mapStateToProps = (state, props) => ({
   authenticated: state.authenticated,
 })
 
-export default connect(mapStateToProps)(Signup);
+export default connect(mapStateToProps)(Login);

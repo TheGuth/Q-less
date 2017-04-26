@@ -9,7 +9,7 @@ const ROOT_URL = 'https://vast-earth-24706.herokuapp.com';
 
 export function signinUser(email, password) {
 
-  const data ={email: email.toLowerCase(), password: password}
+  const data = {email: email.toLowerCase(), password: password}
   return function(dispatch) {
     // Submit email/password to the server
     return fetch(`${ROOT_URL}/login`, {
@@ -19,14 +19,11 @@ export function signinUser(email, password) {
       },
       body: JSON.stringify(data)
     }).then(response => {
-      console.log(response);
       if (!response.ok) {
         throw new Error(response.statusText);
       }
       return response.json();
     }).then(data => {
-      console.log(data);
-      console.log('hello');
       // If request is good...
       // - Update state to indicate user is authenticated
       dispatch({ type: AUTH_USER });
@@ -43,18 +40,29 @@ export function signinUser(email, password) {
   }
 }
 
-export function signupUser({ email, password }) {
+export function signupUser( email, password ) {
+  const data = {email: email.toLowerCase(), password: password, businessName: "lame"}
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/signup`, { email, password })
-      .then(response => {
-        dispatch({ type: AUTH_USER });
-        localStorage.setItem('token', response.data.token);
+    return fetch(`${ROOT_URL}/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    }).then(data => {
 
-        Actions.dashboard()
-      })
-      .catch(response => {
-        dispatch(authError(response.response.data.error))
-      });
+      dispatch({ type: AUTH_USER });
+      localStorage.setItem('token', data.token);
+
+      Actions.dashboard()
+    }).catch(response => {
+      dispatch(authError('Email in use'))
+    });
   }
 }
 
