@@ -7,7 +7,7 @@ import * as actions from '../actions';
 export class Dashboard extends Component {
 
   componentWillMount() {
-
+    this.props.dispatch(actions.fetchMenu(this.props.currentConnection));
   }
 
   render() {

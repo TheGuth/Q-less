@@ -1,5 +1,4 @@
 export const retrieveBusinessInfo = (currentConnection) => dispatch => {
-  console.log('hello');
   return fetch(`https://vast-earth-24706.herokuapp.com/dashboard/${currentConnection}`)
   .then(response => {
     if (!response.ok) {
@@ -7,7 +6,6 @@ export const retrieveBusinessInfo = (currentConnection) => dispatch => {
     }
     return response.json();
   }).then(data => {
-    console.log(data);
     return dispatch(businessInfoSuccess(data));
   }).catch(error => {
     return dispatch(businessInfoError(error));
@@ -36,14 +34,14 @@ export const connectToBusiness = (currentConnection) => ({
 
 export const fetchMenu = (currentConnection) => dispatch => {
   // /dashboard/:id/drinks/:page
-    return fetch(`/dashboard/${currentConnection}/drinks/0`)
+    return fetch(`https://vast-earth-24706.herokuapp.com/dashboard/${currentConnection}/drinks/0`)
     .then(response => {
       if (!response.ok) {
         throw new Error(response.statusText);
       }
       return response.json();
     }).then(data => {
-
+      
       dispatch(retrieveBusinessInfo(currentConnection));
       dispatch(connectToBusiness(currentConnection));
       return dispatch(loadMenu(data))

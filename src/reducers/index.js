@@ -10,7 +10,9 @@ import { BUSINESS_INFO_SUCCESS,
          ADD_ORDER,
          ADD_ORDER_ERROR,
          DRINK_IS_READY,
-         DRINK_IS_READY_ERROR
+         DRINK_IS_READY_ERROR,
+         LOAD_MENU,
+         LOAD_MENU_ERROR
        } from '../actions';
 
 const initialState = {
@@ -30,6 +32,12 @@ export const rootReducer = (state=initialState, action) => {
       return state;
     case CONNECT_TO_BUSINESS:
       return {...state, currentConnection: action.currentConnection};
+    case LOAD_MENU:
+      console.log(action.data);
+      return {...state, menu: action.data};
+    case LOAD_MENU_ERROR:
+      console.error(action.error);
+      return state;
     case GRAB_ORDERS:
       console.log(action.data);
       return {...state, orders: action.data};
