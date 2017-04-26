@@ -11,7 +11,7 @@ export const rootReducer = (state=initialState, action) => {
         console.log(action.data);
         return {...state, businessName: action.data.businessName, currentConnection: action.data.id};
     case BUSINESS_INFO_ERROR:
-      console.error(action.error)
+      console.log(action.error)
       return state;
     case CONNECT_TO_BUSINESS:
       return {...state, currentConnection: action.currentConnection};
