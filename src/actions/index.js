@@ -41,7 +41,7 @@ export const fetchMenu = (currentConnection) => dispatch => {
       }
       return response.json();
     }).then(data => {
-      
+
       dispatch(retrieveBusinessInfo(currentConnection));
       dispatch(connectToBusiness(currentConnection));
       return dispatch(loadMenu(data))

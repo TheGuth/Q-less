@@ -15,15 +15,28 @@ import { BUSINESS_INFO_SUCCESS,
          LOAD_MENU_ERROR
        } from '../actions';
 
+import {
+  AUTH_USER,
+  UNAUTH_USER,
+  AUTH_ERROR,
+} from '../actions/auth'
+
 const initialState = {
   menu: [],
   businessName: '',
   currentOrder: [],
-  currentConnection: ''
+  currentConnection: '',
+  authenticated: false
 };
 
 export const rootReducer = (state=initialState, action) => {
   switch(action.type) {
+    case AUTH_USER:
+      return { ... state, error: '', authenticated: true };
+    case UNAUTH_USER:
+      return { ...state, authenticated: false };
+    case AUTH_ERROR:
+      return { ...state, error: action.payload };
     case BUSINESS_INFO_SUCCESS:
       console.log(action.data.id);
       return {...state, businessName: action.data.businessName, currentConnection: action.data.id};
