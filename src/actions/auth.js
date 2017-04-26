@@ -8,8 +8,8 @@ export const FETCH_MESSAGE = 'fetch_message';
 const ROOT_URL = 'https://vast-earth-24706.herokuapp.com';
 
 export function signinUser(email, password) {
-  console.log(email, password);
-  const data ={email: email, password: password}
+
+  const data ={email: email.toLowerCase(), password: password}
   return function(dispatch) {
     // Submit email/password to the server
     return fetch(`${ROOT_URL}/login`, {
@@ -19,13 +19,14 @@ export function signinUser(email, password) {
       },
       body: JSON.stringify(data)
     }).then(response => {
-
+      console.log(response);
       if (!response.ok) {
         throw new Error(response.statusText);
       }
       return response.json();
     }).then(data => {
       console.log(data);
+      console.log('hello');
       // If request is good...
       // - Update state to indicate user is authenticated
       dispatch({ type: AUTH_USER });

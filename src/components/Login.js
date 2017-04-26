@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import { Spinner } from './common';
 import * as actions from '../actions/auth';
 import {Container,
   Header,
@@ -29,7 +30,8 @@ export class Signup extends Component {
   state = {
     email: '',
     password: '',
-    error: false
+    error: false,
+    loading: false
   }
 
   grabPassword(value) {
@@ -42,35 +44,27 @@ export class Signup extends Component {
 
   onLogin() {
     const {email, password} = this.state;
-    console.log(email, password);
+    this.setState({loading: true})
+
     this.props.dispatch(actions.signinUser(email, password))
       .then(response => {
-        console.log(response);
+        if (this.props.authenticated) {
+          return Actions.landingPage();
+        } else {
+          this.setState({error: true})
+        }
+        this.setState({loading: false})
       })
       .catch(error => {
         console.log(error);
+        this.setState({error: true})
+        this.setState({loading: false})
       })
   }
 
-  // onConnect() {
-  //   this.props.dispatch(actions.retrieveBusinessInfo(this.state.currentConnection))
-  //     .then(response => {
-  //       console.log(response.type)
-  //       if (response.type === 'BUSINESS_INFO_SUCCESS') {
-  //         this.setState({errorMessage: false})
-  //         return Actions.dashboard()
-  //       } else {
-  //         this.setState({errorMessage: true})
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //       this.setState({errorMessage: true})
-  //     })
-  // }
-
   errorMessage() {
     if (this.state.errorMessage) {
+      console.log('hello');
       return (
         <Text style={styles.errorMessage}>
           Incorrect Email or Password
@@ -80,10 +74,13 @@ export class Signup extends Component {
     return <Text></Text>
   }
 
-
+  renderSpinner() {
+    if (this.state.loading) {
+      return <Spinner size="large" />;
+    }
+  }
 
   render() {
-    console.log(this.state.email, this.state.password);
     return (
       <Container>
         <Header>
@@ -104,9 +101,10 @@ export class Signup extends Component {
               </Item>
               <Item stackedLabel last>
                 <Label>Password</Label>
-                <Input onChangeText={this.grabPassword.bind(this)} />
+                <Input secureTextEntry={true} onChangeText={this.grabPassword.bind(this)} />
               </Item>
             </Form>
+            {this.errorMessage()}
             <Button onPress={this.onLogin.bind(this)} block info>
               <Text>Log In </Text>
             </Button>
@@ -114,6 +112,7 @@ export class Signup extends Component {
             <Button onPress={() => Actions.signupPage()} block>
               <Text>Sign Up</Text>
             </Button>
+            {this.renderSpinner()}
           </Content>
         </Container>
     </Container>
@@ -121,4 +120,8 @@ export class Signup extends Component {
   }
 }
 
-export default connect()(Signup);
+const mapStateToProps = (state, props) => ({
+  authenticated: state.authenticated,
+})
+
+export default connect(mapStateToProps)(Signup);
