@@ -63,10 +63,9 @@ export class Signup extends Component {
   }
 
   errorMessage() {
-    if (this.state.errorMessage) {
-      console.log('hello');
+    if (this.state.error) {
       return (
-        <Text style={styles.errorMessage}>
+        <Text>
           Incorrect Email or Password
         </Text>
       );
@@ -81,6 +80,7 @@ export class Signup extends Component {
   }
 
   render() {
+    console.log(this.state.error);
     return (
       <Container>
         <Header>
@@ -104,10 +104,10 @@ export class Signup extends Component {
                 <Input secureTextEntry={true} onChangeText={this.grabPassword.bind(this)} />
               </Item>
             </Form>
-            {this.errorMessage()}
             <Button onPress={this.onLogin.bind(this)} block info>
               <Text>Log In </Text>
             </Button>
+            {this.errorMessage()}
             <Text>OR</Text>
             <Button onPress={() => Actions.signupPage()} block>
               <Text>Sign Up</Text>
