@@ -14,6 +14,10 @@ export class Dashboard extends Component {
 
   }
 
+  onSubmitOrder() {
+    //switch to form screen
+  }
+
   render() {
     return (
 
