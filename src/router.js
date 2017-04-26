@@ -9,8 +9,8 @@ export default class App extends Component {
     return (
       <Router>
         <Scene key="root">
-          <Scene key="landingPage" component={LandingPage} title="DrunkFast" initial={true} />
-          <Scene key="dashboard" component={Dashboard} title="Dashboard" />
+          <Scene key="landingPage" component={LandingPage} title="Q-Less" initial={true} />
+          <Scene renderBackButton={() => (null) } key="dashboard" component={Dashboard} title="Q-Less" />
         </Scene>
       </Router>
     )
