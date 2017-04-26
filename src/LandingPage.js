@@ -8,7 +8,7 @@ import { connectWithBusiness } from './actions/index'
 export class LandingPage extends Component {
   state = {
     currentConnection: ''
-  }
+  } 
 
   grabBusinessId(value) {
     this.setState({currentConnection: value});

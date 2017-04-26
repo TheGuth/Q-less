@@ -1,16 +1,26 @@
-import { CONNECT_WITH_BUSINESS } from '../actions/index';
+import {
+  CONNECT_WITH_BUSINESS,
+  LOAD_MENU,
+  LOAD_MENU_ERROR
+ } from '../actions/index';
 
 const initialState = {
-  currentConnection: ''
+  currentConnection: '',
+  menu:[],
 }
 
 export const reducers = (state=initialState, action) => {
   switch (action.type) {
+
     case CONNECT_WITH_BUSINESS:
-      console.log('CONNECT_WITH_BUSINESS');
-      console.log(action.currentConnection);
       return {...state, currentConnection: action.currentConnection}
 
-    default:
+    case LOAD_MENU:
+      console.log('LOAD_MENU');
+      return {...state, menu: action.data};
+
+    case LOAD_MENU_ERROR:
+      return state;
+
   }
 }
