@@ -26,7 +26,8 @@ const initialState = {
   businessName: '',
   currentOrder: [],
   currentConnection: '',
-  authenticated: false
+  authenticated: false,
+  currentOrder: []
 };
 
 export const rootReducer = (state=initialState, action) => {
