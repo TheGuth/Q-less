@@ -13,8 +13,8 @@ export default class App extends Component {
         <Scene key="root">
           <Scene key="signupPage" component={Signup} title="Q-Less" />
           <Scene key="loginPage" component={Login} title="Q-Less" initial={true} />
-          <Scene key="landingPage" component={LandingPage} title="Q-Less" />
-          <Scene renderBackButton={() => (null) } key="dashboard" component={Dashboard} title="Q-Less" />
+          <Scene renderBackButton={() => (null) } key="landingPage" component={LandingPage} title="Q-Less" />
+          <Scene key="dashboard" component={Dashboard} title="Q-Less" />
         </Scene>
       </Router>
     )
