@@ -1,4 +1,3 @@
-
 export const retrieveBusinessInfo = (currentConnection) => dispatch => {
   return fetch(`https://vast-earth-24706.herokuapp.com/dashboard/${currentConnection}`)
   .then(response => {

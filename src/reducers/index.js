@@ -27,7 +27,9 @@ const initialState = {
   currentOrder: [],
   currentConnection: '',
   authenticated: false,
-  quantity: 0
+  quantity: 0,
+  currentOrder: []
+
 };
 
 export const rootReducer = (state=initialState, action) => {

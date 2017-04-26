@@ -72,3 +72,5 @@ const mapStateToProps = (state, props) => ({
 
 
 export default connect(mapStateToProps)(Dashboard);
+
+// picker view component
