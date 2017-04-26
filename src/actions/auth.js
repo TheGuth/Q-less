@@ -8,7 +8,6 @@ export const FETCH_MESSAGE = 'fetch_message';
 const ROOT_URL = 'https://vast-earth-24706.herokuapp.com';
 
 export function signinUser(email, password) {
-
   const data = {email: email.toLowerCase(), password: password}
   return function(dispatch) {
     // Submit email/password to the server

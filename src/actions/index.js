@@ -33,24 +33,6 @@ export const connectToBusiness = (currentConnection) => ({
 
 /////////////////////////////////////////////////////
 
-// export const fetchMenu = (currentConnection) => dispatch => {
-//   // /dashboard/:id/drinks/:page
-//     return fetch(`https://vast-earth-24706.herokuapp.com/dashboard/${currentConnection}/drinks/0`)
-//     .then(response => {
-//       if (!response.ok) {
-//         throw new Error(response.statusText);
-//       }
-//       return response.json();
-//     }).then(data => {
-//
-//       dispatch(retrieveBusinessInfo(currentConnection));
-//       dispatch(connectToBusiness(currentConnection));
-//       return dispatch(loadMenu(data))
-//     }).catch(error => {
-//       return dispatch(loadMenuError(error));
-//     });
-// };
-
 export const LOAD_MENU = 'LOAD_MENU';
 export const loadMenu = (data) => ({
     type: LOAD_MENU,
@@ -78,12 +60,16 @@ export const submitOrder = (userNameInput, userEmailInput, userTableInput, order
     },
     body: JSON.stringify(data)
   }).then(response => {
-
-export const CONNECT_WITH_BUSINESS = 'CONNECT_WITH_BUSINESS';
-export const connectWithBusiness = (currentConnection) => ({
-  type: CONNECT_WITH_BUSINESS,
-  currentConnection: currentConnection
-});
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  }).then(data => {
+    return dispatch(orderSuccess());
+  }).catch(error => {
+    return dispatch(orderFailure(error));
+  });
+};
 
 export const fetchMenu = (currentConnection) => dispatch => {
 
@@ -99,11 +85,11 @@ export const fetchMenu = (currentConnection) => dispatch => {
     }
     return response.json();
   }).then(data => {
-    return dispatch(orderSuccess());
+    return dispatch(loadMenu(data))
   }).catch(error => {
-    return dispatch(orderFailure(error));
+    return dispatch(loadMenuError(error));
   });
-};
+}
 
 export const ORDER_SUCCESS = 'ORDER_SUCCESS';
 export const orderSuccess = () => ({
@@ -128,13 +114,7 @@ export const REMOVE_ORDER_ERROR = 'REMOVE_ORDER_ERROR';
 export const removeOrderError = (error) => ({
     type: REMOVE_ORDER_ERROR,
     error: error
-
-    return dispatch(loadMenu(data))
-  }).catch(error => {
-    return dispatch(loadMenuError(error));
-  });
-}
-
+});
 
 export const ADD_ORDER = 'ADD_ORDER';
 export const addOrder = (drinkName, price) => ({
