@@ -1,3 +1,4 @@
+
 export const retrieveBusinessInfo = (currentConnection) => dispatch => {
   return fetch(`https://vast-earth-24706.herokuapp.com/dashboard/${currentConnection}`)
   .then(response => {
@@ -32,23 +33,23 @@ export const connectToBusiness = (currentConnection) => ({
 
 /////////////////////////////////////////////////////
 
-export const fetchMenu = (currentConnection) => dispatch => {
-  // /dashboard/:id/drinks/:page
-    return fetch(`https://vast-earth-24706.herokuapp.com/dashboard/${currentConnection}/drinks/0`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    }).then(data => {
-
-      dispatch(retrieveBusinessInfo(currentConnection));
-      dispatch(connectToBusiness(currentConnection));
-      return dispatch(loadMenu(data))
-    }).catch(error => {
-      return dispatch(loadMenuError(error));
-    });
-};
+// export const fetchMenu = (currentConnection) => dispatch => {
+//   // /dashboard/:id/drinks/:page
+//     return fetch(`https://vast-earth-24706.herokuapp.com/dashboard/${currentConnection}/drinks/0`)
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(response.statusText);
+//       }
+//       return response.json();
+//     }).then(data => {
+//
+//       dispatch(retrieveBusinessInfo(currentConnection));
+//       dispatch(connectToBusiness(currentConnection));
+//       return dispatch(loadMenu(data))
+//     }).catch(error => {
+//       return dispatch(loadMenuError(error));
+//     });
+// };
 
 export const LOAD_MENU = 'LOAD_MENU';
 export const loadMenu = (data) => ({
@@ -77,6 +78,22 @@ export const submitOrder = (userNameInput, userEmailInput, userTableInput, order
     },
     body: JSON.stringify(data)
   }).then(response => {
+
+export const CONNECT_WITH_BUSINESS = 'CONNECT_WITH_BUSINESS';
+export const connectWithBusiness = (currentConnection) => ({
+  type: CONNECT_WITH_BUSINESS,
+  currentConnection: currentConnection
+});
+
+export const fetchMenu = (currentConnection) => dispatch => {
+
+  return fetch(`https://vast-earth-24706.herokuapp.com/dashboard/${currentConnection}/drinks/0`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OTAwYmY4MmJiOWFiNTAwMWM5ZmJjMDgiLCJpYXQiOjE0OTMyMjEyNTA3MDd9.I9q8OFGx6RHuhil7NsFinZgRFCGsRHJBVJ4Tk56C1Bk'
+      }
+  })
+  .then(response => {
     if (!response.ok) {
       throw new Error(response.statusText);
     }
@@ -111,13 +128,19 @@ export const REMOVE_ORDER_ERROR = 'REMOVE_ORDER_ERROR';
 export const removeOrderError = (error) => ({
     type: REMOVE_ORDER_ERROR,
     error: error
-});
+
+    return dispatch(loadMenu(data))
+  }).catch(error => {
+    return dispatch(loadMenuError(error));
+  });
+}
+
 
 export const ADD_ORDER = 'ADD_ORDER';
 export const addOrder = (drinkName, price) => ({
-    type: ADD_ORDER,
-    drinkName: drinkName,
-    price: price,
+  type: ADD_ORDER,
+  drinkName,
+  price
 });
 
 export const ADD_ORDER_ERROR = 'ADD_ORDER_ERROR';
@@ -125,5 +148,6 @@ export const addOrderError = (error) => ({
     type: ADD_ORDER_ERROR,
     error: error
 });
+
 
 //////////////////////////////////////

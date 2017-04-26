@@ -1,29 +1,71 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import { Actions } from 'react-native-router-flux';
+import { fetchMenu, addOrder } from '../actions/index';
+import { Container, Content, List, ListItem, Thumbnail, Text, Header, Body, ActionSheet, Button, Left, Right, Title } from 'native-base';
 
 export class Dashboard extends Component {
 
   componentWillMount() {
-    this.props.dispatch(actions.fetchMenu(this.props.currentConnection));
+    this.props.dispatch(fetchMenu(this.props.currentConnection));
   }
 
   render() {
+    const BUTTONS = [
+      'Order 1',
+      'Order 2',
+      'Order 3',
+      'Order 4',
+      'Order 5',
+      'Cancel',
+    ];
+    var CANCEL_INDEX = 5;
+
+    const menuItems = this.props.menu.map((item, id) => {
+      return <ListItem>
+              <Thumbnail square size={80} source={require('../img/drink.png')} />
+              <Body>
+                <Text>{item.drinkName} - ${item.price}</Text>
+                <Text note>{item.ingredients}</Text>
+              </Body>
+             <Content padder>
+               <Button onPress={()=> {ActionSheet.show(
+                 {
+                   options: BUTTONS,
+                   cancelButtonIndex: CANCEL_INDEX,
+                   title: 'Order'
+                 },
+                 (buttonIndex) => {
+                   this.setState({ clicked: BUTTONS[buttonIndex] });
+                 });
+                 this.props.dispatch(addOrder(item.drinkName, item.price));
+               }
+             }><Text>Order</Text></Button>
+             </Content>
+            </ListItem>
+    })
+
     return (
-      <View style={{margin: 128}}>
-        <Text>Dashboard</Text>
-      </View>
+
+      <Container>
+          <Header>
+            <Text>Menu</Text>
+          </Header>
+          <Content>
+            <List>
+              {menuItems}
+            </List>
+          </Content>
+      </Container>
+
     )
   }
 }
 
 const mapStateToProps = (state, props) => ({
   currentConnection: state.currentConnection,
-  businessName: state.businessName,
-  currentOrder: state.currentOrder,
-  menu: state.menu,
+  menu: state.menu
 })
+
 
 export default connect(mapStateToProps)(Dashboard);

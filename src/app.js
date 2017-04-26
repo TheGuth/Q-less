@@ -5,6 +5,7 @@ import ReduxThunk from 'redux-thunk';
 import { rootReducer } from './reducers';
 import Route from './router';
 
+
 class App extends Component {
 
   render() {
