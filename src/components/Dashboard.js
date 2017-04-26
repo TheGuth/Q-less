@@ -39,6 +39,7 @@ export class Dashboard extends Component {
                    title: 'Order'
                  },
                  (buttonIndex) => {
+                   console.log('hello');
                    this.setState({ clicked: BUTTONS[buttonIndex] });
                    this.props.dispatch(addOrder(item.drinkName, item.price, buttonIndex + 1));
                  });

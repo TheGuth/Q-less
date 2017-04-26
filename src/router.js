@@ -24,7 +24,7 @@ export default class App extends Component {
             title="Q-Less"
             rightTitle="Order Cart"
             onRight={() => Actions.checkout()} />
-          <Scene key="checkout" component={Checkout} title="Checkout" />
+          <Scene backTitle="Menu" backButtonImage={null} onBack={() => Actions.dashboard()} key="checkout" component={Checkout} title="Checkout" />
         </Scene>
       </Router>
     )
