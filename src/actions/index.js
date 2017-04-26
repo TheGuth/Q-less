@@ -5,7 +5,13 @@ export const connectWithBusiness = (currentConnection) => ({
 });
 
 export const fetchMenu = (currentConnection) => dispatch => {
-  return fetch(`https://vast-earth-24706.herokuapp.com/dashboard/${currentConnection}/drinks/0`)
+
+  return fetch(`https://vast-earth-24706.herokuapp.com/dashboard/${currentConnection}/drinks/0`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OTAwYmY4MmJiOWFiNTAwMWM5ZmJjMDgiLCJpYXQiOjE0OTMyMjEyNTA3MDd9.I9q8OFGx6RHuhil7NsFinZgRFCGsRHJBVJ4Tk56C1Bk'
+      }
+  })
   .then(response => {
     if (!response.ok) {
       throw new Error(response.statusText);

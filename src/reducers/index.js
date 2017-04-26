@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   currentConnection: '',
-  menu:[],
+  menu:[]
 }
 
 export const reducers = (state=initialState, action) => {
