@@ -6,6 +6,7 @@ import { Container, Content, List, ListItem, Thumbnail, Text, Header, Body, Acti
 
 export class Dashboard extends Component {
 
+
   componentWillMount() {
     this.props.dispatch(fetchMenu(this.props.currentConnection));
   }
@@ -20,6 +21,8 @@ export class Dashboard extends Component {
       'Cancel',
     ];
     var CANCEL_INDEX = 5;
+
+    let numberOfDrinks;
 
     const menuItems = this.props.menu.map((item, id) => {
       return <ListItem>
@@ -37,8 +40,8 @@ export class Dashboard extends Component {
                  },
                  (buttonIndex) => {
                    this.setState({ clicked: BUTTONS[buttonIndex] });
+                   this.props.dispatch(addOrder(item.drinkName, item.price, buttonIndex + 1));
                  });
-                 this.props.dispatch(addOrder(item.drinkName, item.price));
                }
              }><Text>Order</Text></Button>
              </Content>

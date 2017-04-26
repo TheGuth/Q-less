@@ -26,7 +26,8 @@ const initialState = {
   businessName: '',
   currentOrder: [],
   currentConnection: '',
-  authenticated: false
+  authenticated: false,
+  quantity: 0
 };
 
 export const rootReducer = (state=initialState, action) => {
@@ -59,8 +60,11 @@ export const rootReducer = (state=initialState, action) => {
       return state;
     case ADD_ORDER:
       const currentOrder = state.currentOrder.slice();
+      for (let i = 0; i < action.quantity; i++) {
       currentOrder.push({drinkName: action.drinkName, price: action.price});
-      return {...state, currentOrder: currentOrder};
+    }
+      console.log(currentOrder);
+      return {...state, currentOrder: currentOrder, quantity: action.quantity};
     case ADD_ORDER_ERROR:
       console.error(action.error);
       return state;
