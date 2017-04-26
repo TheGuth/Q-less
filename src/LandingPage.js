@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Input } from './components/common'
+import { Input, Button } from './components/common';
+import { connect } from 'react-redux';
+import { connectWithBusiness } from './actions/index'
 
-export default class LandingPage extends Component {
+export class LandingPage extends Component {
   state = {
     currentConnection: ''
   }
 
-  grabBusiness(value) {
+  grabBusinessId(value) {
     this.setState({currentConnection: value});
   }
+
 
   render() {
     return (
@@ -22,13 +25,15 @@ export default class LandingPage extends Component {
         label="Connect"
         value={this.state.currentConnection}
         style ={styles.inputform}
-        onChangeText={this.grabBusiness.bind(this)} />
+        onChangeText={this.grabBusinessId.bind(this)} />
+        <Button onPress={() => this.props.dispatch(connectWithBusiness(this.state.currentConnection))}>
+          Connect
+        </Button>
         <Text onPress={Actions.dashboard}>This is LandingPage!</Text>
       </View>
     );
   }
 }
-
 
 
 const styles = {
@@ -59,3 +64,5 @@ const styles = {
   }
 
 }
+
+export default connect()(LandingPage);
