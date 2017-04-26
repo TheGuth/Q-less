@@ -35,3 +35,16 @@ export const loadMenuError = (error) => ({
   type: LOAD_MENU_ERROR,
   error: error
 });
+
+export const ADD_ORDER = 'ADD_ORDER';
+export const addOrder = (drinkName, price) => ({
+  type: ADD_ORDER,
+  drinkName,
+  price
+});
+
+export const ADD_ORDER_ERROR = 'ADD_ORDER_ERROR';
+export const addOrderError = (error) => ({
+    type: ADD_ORDER_ERROR,
+    error: error
+});

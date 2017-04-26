@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { fetchMenu } from './actions/index';
+import { fetchMenu, addOrder } from './actions/index';
 import { Container, Content, List, ListItem, Thumbnail, Text, Header, Body, ActionSheet, Button, Left, Right, Title } from 'native-base';
 
 export class Dashboard extends Component {
@@ -11,6 +11,16 @@ export class Dashboard extends Component {
   }
 
   render() {
+    const BUTTONS = [
+      'Order 1',
+      'Order 2',
+      'Order 3',
+      'Order 4',
+      'Order 5',
+      'Cancel',
+    ];
+    var CANCEL_INDEX = 5;
+
     const menuItems = this.props.menu.map((item, id) => {
       return <ListItem>
               <Thumbnail square size={80} source={require('./img/drink.png')} />
@@ -18,10 +28,25 @@ export class Dashboard extends Component {
                 <Text>{item.drinkName} - ${item.price}</Text>
                 <Text note>{item.ingredients}</Text>
               </Body>
+             <Content padder>
+               <Button onPress={()=> {ActionSheet.show(
+                 {
+                   options: BUTTONS,
+                   cancelButtonIndex: CANCEL_INDEX,
+                   title: 'Order'
+                 },
+                 (buttonIndex) => {
+                   this.setState({ clicked: BUTTONS[buttonIndex] });
+                 });
+                 this.props.dispatch(addOrder(item.drinkName, item.price));
+               }
+             }><Text>Order</Text></Button>
+             </Content>
             </ListItem>
     })
 
     return (
+
       <Container>
           <Header>
             <Text>Menu</Text>
@@ -32,6 +57,7 @@ export class Dashboard extends Component {
             </List>
           </Content>
       </Container>
+
     )
   }
 }
