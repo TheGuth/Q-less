@@ -11,7 +11,7 @@ export function signinUser(email, password) {
   const data = {email: email.toLowerCase(), password: password}
   return function(dispatch) {
     // Submit email/password to the server
-    return fetch(`${ROOT_URL}/login`, {
+    return fetch(`${ROOT_URL}/client/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ export function signinUser(email, password) {
 export function signupUser( email, password ) {
   const data = {email: email.toLowerCase(), password: password, businessName: "lame"}
   return function(dispatch) {
-    return fetch(`${ROOT_URL}/users`, {
+    return fetch(`${ROOT_URL}/client/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

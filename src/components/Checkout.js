@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { Container, Content, List, ListItem, Text, Button, Icon } from 'native-base';
 import { removeOrder } from '../actions/index'
@@ -22,14 +23,14 @@ export  class Checkout extends Component {
               </ListItem>
     });
      return (
-       <Container>
+       <Container style={{marginTop: 80}}>
            <Content>
                <List>
                 {drinks}
                </List>
            </Content>
            <Text>{total}</Text>
-           <Button primary block>
+           <Button onPress={() => Actions.submitOrders()} primary block>
              <Text>Submit Order</Text>
            </Button>
        </Container>

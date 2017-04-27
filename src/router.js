@@ -6,7 +6,7 @@ import Dashboard from './components/Dashboard';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Checkout from './components/Checkout';
-import SubmitOrder from './components/SubmitOrder';
+import SubmitOrders from './components/SubmitOrder';
 
 export default class App extends Component {
   render() {
@@ -26,7 +26,7 @@ export default class App extends Component {
             rightTitle="Order Cart"
             onRight={() => Actions.checkout()} />
           <Scene backTitle="Menu" backButtonImage={null} onBack={() => Actions.dashboard()} key="checkout" component={Checkout} title="Checkout" />
-          <Scene onBack={() => Actions.checkout()} backButtonImage={null} backTitle="Checkout" key="submitOrder" component={SubmitOrder} Title="Submit Order" />
+          <Scene backTitle="Checkout" backButtonImage={null} onBack={() => Actions.checkout()} key="submitOrders" component={SubmitOrders} title="Submit Orders" />
         </Scene>
       </Router>
     )

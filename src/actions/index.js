@@ -52,7 +52,7 @@ export const submitOrder = (userNameInput, userEmailInput, userTableInput, order
     orderTotal += order.price;
   })
   const data = {clientName: userNameInput, table: userTableInput, clientEmail: userEmailInput, order: orders, totalDrinks: orders.length, orderTotal: orderTotal }
-  return fetch(`/order/${currentConnection}`, {
+  return fetch(`https://vast-earth-24706.herokuapp.com/order/${currentConnection}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
