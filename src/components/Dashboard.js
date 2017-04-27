@@ -25,7 +25,7 @@ export class Dashboard extends Component {
     let numberOfDrinks;
 
     const menuItems = this.props.menu.map((item, id) => {
-      return <ListItem key={id}>
+      return <ListItem key={item.id}>
               <Thumbnail square size={80} source={require('../img/drink.png')} />
               <Body>
                 <Text>{item.drinkName} - ${item.price}</Text>
