@@ -92,64 +92,42 @@ const styles = {
   secondaryHeader: {
     marginTop: 35,
     padding: 10,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: 18,
   },
   textInput: {
     marginTop: 10,
     fontSize: 12,
-    height: 35,
-    width: 220,
-    borderColor: '#000',
-    borderWidth: 1,
+    height: 45,
+    width: 420,
+    borderColor: 'lightgray',
+    borderWidth: 0.5,
     borderRadius: 10,
     textAlign: 'center',
     justifyContent: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontSize: 16,
   },
   connectButton: {
-    marginTop: 10,
-    height: 35,
-    width: 220,
-    borderColor: '#000',
+    marginTop: 30,
+    height: 45,
+    backgroundColor: '#1e90ff',
+    width: 320,
+    borderColor: '#00bfff',
     borderWidth: 1,
     borderRadius: 10,
     justifyContent: 'center',
     alignSelf: 'center'
   },
   connectButtonText: {
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: 16
   },
   errorMessage: {
     textAlign: 'center',
     color: 'red'
   }
-
-  // header: {
-  //   color: '#000000',
-  //   margin: 0,
-  //   alignSelf: 'center',
-  //   justifyContent: 'center',
-  //   textAlign: 'center',
-  //   padding: 10,
-  //   fontWeight: 'bold',
-  //   alignItems: 'center',
-  //   flex: 1
-  // },
-  // label: {
-  //   color: '#000000',
-  //   fontWeight: 'bold',
-  //   textAlign: 'center',
-  //   alignItems: 'center',
-  //   flex: 1
-  // },
-  // inputform: {
-  //   textAlign: 'left',
-  //   color: '#333333',
-  //   margin: 5,
-  //   height: 50,
-  //   borderColor: '#60b7e2',
-  //   borderWidth: 1,
-  // }
 }
 
 export default connect()(LandingPage);

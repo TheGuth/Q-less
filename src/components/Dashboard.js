@@ -32,7 +32,7 @@ export class Dashboard extends Component {
                 <Text note>{item.ingredients}</Text>
               </Body>
              <Content padder>
-               <Button onPress={()=> {ActionSheet.show(
+               <Button style={styles.button} onPress={()=> {ActionSheet.show(
                  {
                    options: BUTTONS,
                    cancelButtonIndex: CANCEL_INDEX,
@@ -51,7 +51,7 @@ export class Dashboard extends Component {
     return (
 
       <Container>
-          <Header>
+          <Header style={styles.header}>
             <Text>Menu</Text>
           </Header>
           <Content>
@@ -62,6 +62,15 @@ export class Dashboard extends Component {
       </Container>
 
     )
+  }
+}
+
+const styles = {
+  header: {
+    marginTop: 63,
+  },
+  button: {
+    marginLeft: 45
   }
 }
 

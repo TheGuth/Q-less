@@ -25,10 +25,12 @@ export default class App extends Component {
             title="Q-Less"
             rightTitle="Order Cart"
             onRight={() => Actions.checkout()} />
-          <Scene backTitle="Menu" backButtonImage={null} onBack={() => Actions.dashboard()} key="checkout" component={Checkout} title="Checkout" />
-          <Scene backTitle="Checkout" backButtonImage={null} onBack={() => Actions.checkout()} key="submitOrders" component={SubmitOrders} title="Submit Orders" />
+          <Scene backTitle="Menu" backButtonImage={null} onBack={() => Actions.dashboard()} key="checkout" component={Checkout} title="Q-Less" />
+          <Scene backTitle="Checkout" backButtonImage={null} onBack={() => Actions.checkout()} key="submitOrders" component={SubmitOrders} title="Q-Less" />
         </Scene>
       </Router>
     )
   }
 }
+
+// #564878
