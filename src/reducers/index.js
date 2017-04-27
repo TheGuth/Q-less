@@ -63,7 +63,7 @@ export const rootReducer = (state=initialState, action) => {
     case ADD_ORDER:
       const currentOrder = state.currentOrder.slice();
       for (let i = 0; i < action.quantity; i++) {
-      currentOrder.push({drinkName: action.drinkName, price: action.price});
+      currentOrder.push({drinkName: action.drinkName, price: action.price, id: action.id});
     }
       console.log(currentOrder);
       return {...state, currentOrder: currentOrder, quantity: action.quantity};

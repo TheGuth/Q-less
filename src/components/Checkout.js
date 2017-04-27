@@ -12,6 +12,7 @@ export  class Checkout extends Component {
 
   render() {
     const drinks = this.props.currentOrder.map((order, id) => {
+      console.log(order);
       return  <ListItem key={order.id}>
                 <Text> {order.drinkName} - ${order.price}</Text>
                 <Button transparent primary iconRight onPress={() => this.props.dispatch(removeOrder(order.id))}>

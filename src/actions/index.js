@@ -116,11 +116,12 @@ export const removeOrderError = (error) => ({
 });
 
 export const ADD_ORDER = 'ADD_ORDER';
-export const addOrder = (drinkName, price, quantity) => ({
+export const addOrder = (drinkName, price, quantity, id) => ({
   type: ADD_ORDER,
   drinkName,
   price,
   quantity,
+  id
 });
 
 export const ADD_ORDER_ERROR = 'ADD_ORDER_ERROR';
