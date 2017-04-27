@@ -25,7 +25,7 @@ export class Dashboard extends Component {
     let numberOfDrinks;
 
     const menuItems = this.props.menu.map((item, id) => {
-      return <ListItem>
+      return <ListItem key={item.id}>
               <Thumbnail square size={80} source={require('../img/drink.png')} />
               <Body>
                 <Text>{item.drinkName} - ${item.price}</Text>
@@ -39,7 +39,6 @@ export class Dashboard extends Component {
                    title: 'Order'
                  },
                  (buttonIndex) => {
-                   console.log('hello');
                    this.setState({ clicked: BUTTONS[buttonIndex] });
                    this.props.dispatch(addOrder(item.drinkName, item.price, buttonIndex + 1));
                  });

@@ -1,44 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
-import { fetchMenu, addOrder } from '../actions/index';
-import { Container, Content, List, ListItem, Thumbnail, Text, Header, Body, ActionSheet, Button, Left, Right, Title } from 'native-base';
+import { Container, Content, List, ListItem, Text, Button, Icon } from 'native-base';
+import { removeOrder } from '../actions/index'
 
-export class Dashboard extends Component {
 
-  componentWillMount() {
-
-  }
-
-  displayCurrentOrder() {
-
-  }
+export  class Checkout extends Component {
 
   onSubmitOrder() {
     //switch to form screen
   }
 
   render() {
-    return (
-
-      <Container>
-          <Header>
-            <Text>Current Order</Text>
-          </Header>
-          <Content>
-            <List>
-            </List>
-          </Content>
-      </Container>
-
+    const drinks = this.props.currentOrder.map((order, id) => {
+      return  <ListItem key={order.id}>
+                <Text> {order.drinkName} - ${order.price}</Text>
+                <Button transparent primary iconRight onPress={() => this.props.dispatch(removeOrder(order.id))}>
+                  <Icon name='trash' />
+                </Button>
+              </ListItem>
+    });
+     return (
+       <Container>
+           <Content>
+               <List>
+                {drinks}
+               </List>
+           </Content>
+       </Container>
     )
   }
 }
 
+
 const mapStateToProps = (state, props) => ({
-  currentConnection: state.currentConnection,
   currentOrder: state.currentOrder
 })
 
-
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(Checkout);
