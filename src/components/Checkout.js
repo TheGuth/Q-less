@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Content, List, ListItem, Text } from 'native-base';
+import { Container, Content, List, ListItem, Text, Button, Icon } from 'native-base';
+import { removeOrder } from '../actions/index'
 
 
 export  class Checkout extends Component {
@@ -9,6 +10,9 @@ export  class Checkout extends Component {
     const drinks = this.props.currentOrder.map((order, id) => {
       return  <ListItem key={id}>
                 <Text> {order.drinkName} - ${order.price}</Text>
+                <Button transparent primary iconRight onPress={() => this.props.dispatch(removeOrder(id))}>
+                  <Icon name='trash' />
+                </Button>
               </ListItem>
     });
      return (
