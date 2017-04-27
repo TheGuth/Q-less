@@ -32,7 +32,7 @@ export class Dashboard extends Component {
                 <Text note>{item.ingredients}</Text>
               </Body>
              <Content padder>
-               <Button onPress={()=> {ActionSheet.show(
+               <Button style={styles.button} onPress={()=> {ActionSheet.show(
                  {
                    options: BUTTONS,
                    cancelButtonIndex: CANCEL_INDEX,
@@ -41,7 +41,8 @@ export class Dashboard extends Component {
                  (buttonIndex) => {
                    this.setState({ clicked: BUTTONS[buttonIndex] });
                    this.props.dispatch(addOrder(item.drinkName, item.price, buttonIndex + 1, item.id));
-                 });
+                   Actions.refresh();
+                 })
                }
              }><Text>Order</Text></Button>
              </Content>
@@ -50,10 +51,7 @@ export class Dashboard extends Component {
 
     return (
 
-      <Container>
-          <Header>
-            <Text>Menu</Text>
-          </Header>
+      <Container style={styles.header}>
           <Content>
             <List>
               {menuItems}
@@ -62,6 +60,15 @@ export class Dashboard extends Component {
       </Container>
 
     )
+  }
+}
+
+const styles = {
+  header: {
+    marginTop: 63,
+  },
+  button: {
+    marginLeft: 45
   }
 }
 

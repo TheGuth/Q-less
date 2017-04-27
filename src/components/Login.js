@@ -65,7 +65,7 @@ export class Login extends Component {
   errorMessage() {
     if (this.state.error) {
       return (
-        <Text>
+        <Text style={styles.errorStyles}>
           Incorrect Email or Password
         </Text>
       );
@@ -81,19 +81,10 @@ export class Login extends Component {
 
   render() {
     return (
-      <Container>
-        <Header>
-          <Body>
-            <Title>Log In</Title>
-          </Body>
-          <Right>
-            <Button transparent>
-            </Button>
-          </Right>
-        </Header>
+      <Container style={styles.containerStyles}>
         <Container>
           <Content>
-            <Form>
+            <Form style={styles.formStyles}>
               <Item stackedLabel>
                 <Label>Email</Label>
                 <Input onChangeText={this.grabEmail.bind(this)} />
@@ -103,12 +94,12 @@ export class Login extends Component {
                 <Input secureTextEntry={true} onChangeText={this.grabPassword.bind(this)} />
               </Item>
             </Form>
-            <Button onPress={this.onLogin.bind(this)} block info>
-              <Text>Log In </Text>
+            <Button style={styles.buttonStyles} onPress={this.onLogin.bind(this)} block>
+              <Text>Log In</Text>
             </Button>
             {this.errorMessage()}
-            <Text>OR</Text>
-            <Button onPress={() => Actions.signupPage()} block>
+            <Text style={styles.textStyles} >Not a member yet? Sign Up!</Text>
+            <Button style={styles.buttonSignup} onPress={() => Actions.signupPage()} block>
               <Text>Sign Up</Text>
             </Button>
             {this.renderSpinner()}
@@ -117,6 +108,41 @@ export class Login extends Component {
     </Container>
     );
   }
+}
+
+const styles = {
+  containerStyles: {
+    marginTop: 60,
+  },
+  headerTextStyles: {
+    paddingRight: 240,
+  },
+  formStyles: {
+    marginBottom: 20
+  },
+  buttonStyles: {
+    marginTop: 10,
+    padding: 10,
+    marginRight: 40,
+    marginLeft: 40,
+  },
+  buttonSignup: {
+    marginTop: 20,
+    padding: 10,
+    marginRight: 40,
+    marginLeft: 40,
+  },
+  textStyles: {
+    justifyContent: 'center',
+    textAlign: 'center',
+    marginTop: 200
+  },
+  errorStyles: {
+    marginTop: 10,
+    textAlign: 'center',
+    color: 'red'
+  }
+
 }
 
 const mapStateToProps = (state, props) => ({

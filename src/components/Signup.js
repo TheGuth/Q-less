@@ -65,7 +65,7 @@ export class Signup extends Component {
   errorMessage() {
     if (this.state.error) {
       return (
-        <Text>
+        <Text style={styles.errorStyles}>
           Email Already Exists
         </Text>
       );
@@ -81,19 +81,10 @@ export class Signup extends Component {
 
   render() {
     return (
-      <Container>
-        <Header>
-          <Body>
-            <Title>Log In</Title>
-          </Body>
-          <Right>
-            <Button transparent>
-            </Button>
-          </Right>
-        </Header>
+      <Container style={styles.containerStyles}>
         <Container>
           <Content>
-            <Form>
+            <Form style={styles.formStyles}>
               <Item stackedLabel>
                 <Label>Email</Label>
                 <Input onChangeText={this.grabEmail.bind(this)} />
@@ -103,7 +94,7 @@ export class Signup extends Component {
                 <Input secureTextEntry={true} onChangeText={this.grabPassword.bind(this)} />
               </Item>
             </Form>
-            <Button onPress={this.onSignup.bind(this)} block info>
+            <Button style={styles.buttonStyles} onPress={this.onSignup.bind(this)} block>
               <Text>Sign Up! </Text>
             </Button>
             {this.errorMessage()}
@@ -112,6 +103,29 @@ export class Signup extends Component {
         </Container>
     </Container>
     );
+  }
+}
+
+const styles = {
+  containerStyles: {
+    marginTop: 60,
+  },
+  headerTextStyles: {
+    paddingRight: 240,
+  },
+  formStyles: {
+    marginBottom: 20
+  },
+  buttonStyles: {
+    marginTop: 10,
+    padding: 10,
+    marginRight: 40,
+    marginLeft: 40,
+  },
+  errorStyles: {
+    marginTop: 10,
+    textAlign: 'center',
+    color: 'red'
   }
 }
 
