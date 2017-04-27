@@ -28,7 +28,8 @@ const initialState = {
   currentConnection: '',
   authenticated: false,
   quantity: 0,
-  orders: []
+  orders: [],
+  orderSuccess: false
 
 };
 
@@ -80,7 +81,7 @@ export const rootReducer = (state=initialState, action) => {
       return state;
     case ORDER_SUCCESS:
       console.log('ORDER_SUCCESS', state.currentOrder);
-      return {...state, currentOrder: []};
+      return {...state, currentOrder: [], orderSuccess: true};
     case ORDER_FAILURE:
       console.error(action.error);
       return state;

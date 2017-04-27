@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import { AlertIOS } from 'react-native';
 import { Container, Content, Button, Text, Form, Item, Label, Input } from 'native-base';
 import { submitOrder } from '../actions/index';
 
@@ -44,7 +45,19 @@ export class SubmitOrders extends Component {
               <Input onChangeText={this.grabEmail.bind(this)} />
             </Item>
             <Button onPress={() => this.props.dispatch(submitOrder(this.state.name, this.state.email, this.state.table, this.props.currentOrder, this.props.currentConnection))
-                                   .then(Actions.dashboard())
+                                   .then(() => {
+                                     if(this.props.orderSuccess === true) {
+                                       AlertIOS.alert(
+                                         'Your order has been delivered'
+                                       );
+                                       Actions.dashboard();
+                                     } else {
+                                      AlertIOS.alert(
+                                        'Something went wrong. Please try again'
+                                      );
+                                      Actions.checkout();
+                                     }
+                                   })
                     } block>
             <Text>Submit Order</Text>
             </Button>
@@ -58,7 +71,8 @@ export class SubmitOrders extends Component {
 
 const mapStateToProps = (state, props) => ({
   currentOrder: state.currentOrder,
-  currentConnection: state.currentConnection
+  currentConnection: state.currentConnection,
+  orderSuccess: state.orderSuccess
 })
 
 export default connect(mapStateToProps)(SubmitOrders)
