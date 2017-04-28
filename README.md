@@ -17,11 +17,11 @@ Why is this app useful? If your like me then you hate having to wait for the opp
 
 ## Initial UX
 
-[Initial WireFrames](https://github.com/TheGuth/Q-Less/tree/master/readme_images/wireframe_images)
+[Initial WireFrames](https://github.com/TheGuth/Q-Less/wireframe_images)
 
 ## Current UX
 
-[Live Version Images](https://github.com/TheGuth/Q-Less/tree/master/readme_images/live_ux_images)
+[Live Version Images](https://github.com/TheGuth/Q-Less/readme_images/live_ux_images)
 
 ## Working Prototype
 [Q-Less]()
