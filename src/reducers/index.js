@@ -43,7 +43,7 @@ export const rootReducer = (state=initialState, action) => {
       return { ...state, error: action.payload };
     case BUSINESS_INFO_SUCCESS:
       console.log(action.data.id);
-      return {...state, businessName: action.data.businessName, currentConnection: action.data.id};
+      return {...state, businessName: action.data.businessName, currentConnection: action.data.id, currentOrder: []};
     case BUSINESS_INFO_ERROR:
       console.log(action.error)
       return state;

@@ -12,8 +12,6 @@ import SubmitOrders from './components/SubmitOrder';
 
 export class App extends Component {
   render() {
-    console.log(this.props.currentOrder);
-    console.log(this.props.currentOrder.length);
     return (
       <Router>
         <Scene key="root">
@@ -45,7 +43,8 @@ export class App extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  currentOrder: state.currentOrder
+  currentOrder: state.currentOrder,
+  businessName: state.businessName
 })
 
 export default connect(mapStateToProps)(App);
