@@ -17,11 +17,11 @@ Why is this app useful? If your like me then you hate having to wait for the opp
 
 ## Initial UX
 
-[Initial WireFrames](https://github.com/TheGuth/Q-Less/wireframe_images)
+[Initial WireFrames](https://github.com/TheGuth/Q-less/tree/master/wireframe_images)
 
 ## Current UX
 
-[Live Version Images](https://github.com/TheGuth/Q-Less/readme_images/live_ux_images)
+[Live Version Images](https://github.com/TheGuth/Q-less/tree/master/live_ux_images)
 
 ## Working Prototype
 [Q-Less]()
@@ -43,15 +43,15 @@ This app is built using React, Redux, react-native, native-base.io Nodejs, expre
 
 This is v1.0 of the app, but future enhancements are expected.
 
-### Immediate Developments
+* Immediate Developments
 
-### Improve form validation.
-### Add Profile Page
-### Include on Profile Page past business connected to, and past drinks ordered.
-### Include Search Page, so users can search for business by name, and be presented with a list of business that use the app.
-### Add a footer tab navigation for profile page, search page, and dashboard/connect to business page.
-### Improve styling
-### Add logo
+* Improve form validation.
+* Add Profile Page
+* Include on Profile Page past business connected to, and past drinks ordered.
+* Include Search Page, so users can search for business by name, and be presented with a list of business that use the app.
+* Add a footer tab navigation for profile page, search page, and dashboard/connect to business page.
+* Improve styling
+* Add logo
 
 ### Future developments:
 
