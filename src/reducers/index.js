@@ -42,7 +42,6 @@ export const rootReducer = (state=initialState, action) => {
     case AUTH_ERROR:
       return { ...state, error: action.payload };
     case BUSINESS_INFO_SUCCESS:
-      console.log(action.data.id);
       return {...state, businessName: action.data.businessName, currentConnection: action.data.id, currentOrder: []};
     case BUSINESS_INFO_ERROR:
       console.log(action.error)
@@ -50,7 +49,6 @@ export const rootReducer = (state=initialState, action) => {
     case CONNECT_TO_BUSINESS:
       return {...state, currentConnection: action.currentConnection};
     case LOAD_MENU:
-      console.log(action.data);
       return {...state, menu: action.data};
     case LOAD_MENU_ERROR:
       console.error(action.error);
@@ -67,7 +65,6 @@ export const rootReducer = (state=initialState, action) => {
       let random = Math.floor((Math.random() * 1000) + 1);
       currentOrder.push({drinkName: action.drinkName, price: action.price, id: action.id + random});
     }
-      console.log(currentOrder);
       return {...state, currentOrder: currentOrder, quantity: action.quantity};
     case ADD_ORDER_ERROR:
       console.error(action.error);
@@ -80,10 +77,9 @@ export const rootReducer = (state=initialState, action) => {
       console.error(action.error);
       return state;
     case ORDER_SUCCESS:
-      console.log('ORDER_SUCCESS', state.currentOrder);
       return {...state, currentOrder: [], orderSuccess: true};
     case ORDER_FAILURE:
-      // console.error(action.error);
+      console.error(action.error);
       return state;
     default:
       return state;

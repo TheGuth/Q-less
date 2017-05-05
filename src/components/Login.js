@@ -48,7 +48,6 @@ export class Login extends Component {
 
     this.props.dispatch(actions.signinUser(email, password))
       .then(() => {
-        console.log(this.props.authenticated);
         if (this.props.authenticated) {
           return Actions.landingPage();
         } else {

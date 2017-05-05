@@ -73,14 +73,12 @@ export const submitOrder = (userNameInput, userEmailInput, userTableInput, order
       }
       return response.json();
     }).then(data => {
-      console.log(data);
       AlertIOS.alert(
         'Your order has been received'
       );
       Actions.dashboard();
       return dispatch(orderSuccess());
     }).catch(error => {
-      console.log(error);
       AlertIOS.alert(
         'Something went wrong. Please try again'
       );

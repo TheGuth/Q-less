@@ -19,7 +19,6 @@ export class LandingPage extends Component {
   onConnect() {
     this.props.dispatch(actions.retrieveBusinessInfo(this.state.currentConnection))
       .then(response => {
-        console.log(response.type)
         if (response.type === 'BUSINESS_INFO_SUCCESS') {
           this.setState({errorMessage: false})
           return Actions.dashboard()

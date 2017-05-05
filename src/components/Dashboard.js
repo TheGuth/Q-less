@@ -10,7 +10,6 @@ export class Dashboard extends Component {
   componentWillMount() {
     this.props.dispatch(fetchMenu(this.props.currentConnection));
     Actions.refresh({title: this.props.businessName});
-    console.log(this.props.businessName);
   }
 
   render() {

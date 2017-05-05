@@ -9,7 +9,6 @@ export const FETCH_MESSAGE = 'fetch_message';
 const ROOT_URL = 'https://vast-earth-24706.herokuapp.com';
 
 export function signinUser(email, password) {
-  console.log('auth')
   const data = {email: email.toLowerCase(), password: password}
   return function(dispatch) {
     // Submit email/password to the server
@@ -20,20 +19,18 @@ export function signinUser(email, password) {
       },
       body: JSON.stringify(data)
     }).then(response => {
-      console.log(response);
       if (!response.ok) {
         throw new Error(response.statusText);
       }
       return response.json();
     }).then(data => {
-      console.log(data);
       // If request is good...
       // - Update state to indicate user is authenticated
       dispatch({ type: AUTH_USER });
       // - Save the JWT token
       AsyncStorage.setItem('token', data.token);
       AsyncStorage.getItem('token').then((response) => {
-        console.log(response);
+        
       });
       window.localStorage.setItem('token', data.token);
       console.log('token', window.localStorage.getItem('token'));
@@ -67,7 +64,7 @@ export function signupUser( email, password ) {
       dispatch({ type: AUTH_USER });
       AsyncStorage.setItem('token', data.token);
       AsyncStorage.getItem('token').then((response) => {
-        console.log(response);
+
       });
       localStorage.setItem('token', data.token);
 
