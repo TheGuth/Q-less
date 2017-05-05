@@ -83,7 +83,7 @@ export const rootReducer = (state=initialState, action) => {
       console.log('ORDER_SUCCESS', state.currentOrder);
       return {...state, currentOrder: [], orderSuccess: true};
     case ORDER_FAILURE:
-      console.error(action.error);
+      // console.error(action.error);
       return state;
     default:
       return state;

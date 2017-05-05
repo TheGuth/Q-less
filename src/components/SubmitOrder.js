@@ -45,19 +45,6 @@ export class SubmitOrders extends Component {
               <Input onChangeText={this.grabEmail.bind(this)} />
             </Item>
             <Button style={styles.button} onPress={() => this.props.dispatch(submitOrder(this.state.name, this.state.email, this.state.table, this.props.currentOrder, this.props.currentConnection))
-                                   .then(() => {
-                                     if(this.props.orderSuccess === true) {
-                                       AlertIOS.alert(
-                                         'Your order has been received'
-                                       );
-                                       Actions.dashboard();
-                                     } else {
-                                      AlertIOS.alert(
-                                        'Something went wrong. Please try again'
-                                      );
-                                      Actions.checkout();
-                                     }
-                                   })
                     } block>
             <Text>Submit Order</Text>
             </Button>

@@ -28,8 +28,8 @@ import {Container,
 
 export class Login extends Component {
   state = {
-    email: '',
-    password: '',
+    email: 'exampleUser893@gmail.com',
+    password: 'password',
     error: false,
     loading: false
   }
@@ -47,7 +47,8 @@ export class Login extends Component {
     this.setState({loading: true})
 
     this.props.dispatch(actions.signinUser(email, password))
-      .then(response => {
+      .then(() => {
+        console.log(this.props.authenticated);
         if (this.props.authenticated) {
           return Actions.landingPage();
         } else {
@@ -87,11 +88,11 @@ export class Login extends Component {
             <Form style={styles.formStyles}>
               <Item stackedLabel>
                 <Label>Email</Label>
-                <Input onChangeText={this.grabEmail.bind(this)} />
+                <Input value={this.state.email} onChangeText={this.grabEmail.bind(this)} />
               </Item>
               <Item stackedLabel last>
                 <Label>Password</Label>
-                <Input secureTextEntry={true} onChangeText={this.grabPassword.bind(this)} />
+                <Input value={this.state.password} secureTextEntry={true} onChangeText={this.grabPassword.bind(this)} />
               </Item>
             </Form>
             <Button style={styles.buttonStyles} onPress={this.onLogin.bind(this)} block>

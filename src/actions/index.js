@@ -1,3 +1,6 @@
+import { AsyncStorage, AlertIOS } from 'react-native'
+import { Actions } from 'react-native-router-flux';
+
 export const retrieveBusinessInfo = (currentConnection) => dispatch => {
   return fetch(`https://vast-earth-24706.herokuapp.com/dashboard/${currentConnection}`)
   .then(response => {
@@ -47,26 +50,43 @@ export const loadMenuError = (error) => ({
 ////////////////////////////////////////////////
 
 export const submitOrder = (userNameInput, userEmailInput, userTableInput, orders, currentConnection) => dispatch => {
-  let orderTotal = 0;
-  orders.forEach((order) => {
-    orderTotal += order.price;
+  let myToken = '';
+  AsyncStorage.getItem('token').then((response) => {
+    return response;
   })
-  const data = {clientName: userNameInput, table: userTableInput, clientEmail: userEmailInput, order: orders, totalDrinks: orders.length, orderTotal: orderTotal }
-  return fetch(`https://vast-earth-24706.herokuapp.com/order/${currentConnection}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  }).then(response => {
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response.json();
-  }).then(data => {
-    return dispatch(orderSuccess());
-  }).catch(error => {
-    return dispatch(orderFailure(error));
+  .then((myToken) => {
+    let orderTotal = 0;
+    orders.forEach((order) => {
+      orderTotal += order.price;
+    })
+    const data = {clientName: userNameInput, table: userTableInput, clientEmail: userEmailInput, order: orders, totalDrinks: orders.length, orderTotal: orderTotal }
+    return fetch(`https://vast-earth-24706.herokuapp.com/order/${currentConnection}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': myToken
+      },
+      body: JSON.stringify(data)
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    }).then(data => {
+      console.log(data);
+      AlertIOS.alert(
+        'Your order has been received'
+      );
+      Actions.dashboard();
+      return dispatch(orderSuccess());
+    }).catch(error => {
+      console.log(error);
+      AlertIOS.alert(
+        'Something went wrong. Please try again'
+      );
+      Actions.checkout();
+      return dispatch(orderFailure(error));
+    });
   });
 };
 
