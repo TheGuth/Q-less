@@ -8,7 +8,7 @@ import * as actions from '../actions';
 
 export class LandingPage extends Component {
   state = {
-    currentConnection: '',
+    currentConnection: '590bba5983b18c001c68c0d1',
     errorMessage: false
   }
 
