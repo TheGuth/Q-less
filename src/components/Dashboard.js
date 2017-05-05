@@ -45,7 +45,7 @@ export class Dashboard extends Component {
                    Actions.refresh();
                  })
                }
-             }><Text>Order</Text></Button>
+             }><Text style={styles.text}>Order</Text></Button>
              </Content>
             </ListItem>
     })
@@ -69,7 +69,12 @@ const styles = {
     marginTop: 63,
   },
   button: {
-    marginLeft: 45
+    marginLeft: 35,
+
+  },
+  text: {
+    width: 40,
+    fontSize: 14
   }
 }
 
